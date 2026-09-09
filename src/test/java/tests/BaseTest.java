@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public abstract class BaseTest {
-    protected static final String BASE_URL = "https://parabank.parasoft.com/parabanK";
+    protected static final String BASE_URL = "https://parabank.parasoft.com/parabank";
     protected static final String USERNAME = "tttttien";
     protected static final String PASSWORD = "Demcomdilam123";
 
