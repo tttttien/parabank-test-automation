@@ -35,8 +35,6 @@ public class FundTransferTest extends BaseTest {
         transferPage.selectToAccountByIndex(1);
         transferPage.submitTransfer();
 
-        // NOTE: Parabank's demo validation is known to be loose — document the
-        // ACTUAL observed behavior as a defect if the transfer is unexpectedly accepted.
         boolean succeeded = transferPage.isTransferSuccessful();
         if (succeeded) {
             System.out.println("DEFECT CANDIDATE: zero-amount transfer was accepted by the app.");
