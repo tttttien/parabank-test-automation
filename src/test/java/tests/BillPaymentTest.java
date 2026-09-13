@@ -85,7 +85,38 @@ public class BillPaymentTest extends BaseTest {
         billPayPage.selectFromAccountByIndex(0);
         billPayPage.submitPayment();
 
-        Assert.assertFalse(billPayPage.isPaymentSuccessful(),
+        Assert.assertFalse(billPayPage.isPaymentSuccessful  (),
                 "Expected the payment to be rejected due to account/verify-account mismatch");
     }
+
+    @Test
+    public void testPayBillWithExceedingAmountBalance() {
+        loginAsTestUser();
+        BillPayPage billPayPage = new BillPayPage(driver);
+        billPayPage.goTo(BASE_URL);
+        System.out.println("URL: " + driver.getCurrentUrl());
+        System.out.println("TITLE: " + driver.getTitle());
+
+        billPayPage.fillPayeeForm(
+                "Electric Co",
+                "123 Main St",
+                "Springfield",
+                "IL",
+                "62704",
+                "5551234567",
+                "123456",
+                "123456",
+                "999999"
+        );
+        System.out.println(
+                driver.findElements(By.id("fromAccountId")).size()
+        );
+        billPayPage.selectFromAccountByIndex(0);
+        billPayPage.submitPayment();
+
+        Assert.assertFalse(billPayPage.isPaymentSuccessful(),
+                "Expected the payment to be rejected due to the exceeding money");
+    }
+
+
 }
